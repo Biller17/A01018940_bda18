@@ -1,16 +1,13 @@
 
 
-
 -- consulta que muestra todas las product lines  que ha comprado el cliente
-
-SELECT  textdescription
-   FROM customers c
-   INNER JOIN orders o
-   on c.customerNumber = o.customerNumber
-   INNER JOIN orderdetails d
-   ON o.orderNumber = d.orderNumber
-   INNER JOIN products p
-   ON d.productcode = p.productcode
-   INNER JOIN productlines l
-   ON p.productcode = l.productline
-   where c.customerNumber = 112;
+explain
+select l.textdescription
+  from products
+  inner join productlines l
+  on products.productline = l.productline
+  inner join orderdetails d
+  on products.productcode = d.productcode
+  inner join orders o
+  on d.ordernumber = o.ordernumber
+  where o.customernumber = 112
