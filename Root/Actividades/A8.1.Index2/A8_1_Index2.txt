@@ -1,0 +1,450 @@
+QUERY UNO INDEX UNO
+
+
+{
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "95.20"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "ref",
+      "possible_keys": [
+        "idxuno"
+      ],
+      "key": "idxuno",
+      "used_key_parts": [
+        "orderLineNumber"
+      ],
+      "key_length": "2",
+      "ref": [
+        "const"
+      ],
+      "rows_examined_per_scan": 326,
+      "rows_produced_per_join": 108,
+      "filtered": "33.33",
+      "cost_info": {
+        "read_cost": "30.00",
+        "eval_cost": "21.73",
+        "prefix_cost": "95.20",
+        "data_read_per_join": "3K"
+      },
+      "used_columns": [
+        "orderNumber",
+        "productCode",
+        "quantityOrdered",
+        "priceEach",
+        "orderLineNumber"
+      ],
+      "attached_condition": "(`classicmodels`.`orderdetails`.`quantityOrdered` > 50)"
+    }
+  }
+} |
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY DOS INDEX UNO
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "95.20"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "ref",
+      "possible_keys": [
+        "idxuno"
+      ],
+      "key": "idxuno",
+      "used_key_parts": [
+        "orderLineNumber"
+      ],
+      "key_length": "2",
+      "ref": [
+        "const"
+      ],
+      "rows_examined_per_scan": 326,
+      "rows_produced_per_join": 108,
+      "filtered": "33.33",
+      "cost_info": {
+        "read_cost": "30.00",
+        "eval_cost": "21.73",
+        "prefix_cost": "95.20",
+        "data_read_per_join": "3K"
+      },
+      "used_columns": [
+        "productCode",
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "(`classicmodels`.`orderdetails`.`quantityOrdered` > 50)"
+    }
+  }
+} |
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY TRES INDEX UNO
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "95.20"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "ref",
+      "possible_keys": [
+        "idxuno"
+      ],
+      "key": "idxuno",
+      "used_key_parts": [
+        "orderLineNumber"
+      ],
+      "key_length": "2",
+      "ref": [
+        "const"
+      ],
+      "rows_examined_per_scan": 326,
+      "rows_produced_per_join": 108,
+      "filtered": "33.33",
+      "cost_info": {
+        "read_cost": "30.00",
+        "eval_cost": "21.73",
+        "prefix_cost": "95.20",
+        "data_read_per_join": "3K"
+      },
+      "used_columns": [
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "(`classicmodels`.`orderdetails`.`quantityOrdered` > 50)"
+    }
+  }
+} |
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY UNO INDEX DOS
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "93.41"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxdos"
+      ],
+      "key": "idxdos",
+      "used_key_parts": [
+        "quantityOrdered"
+      ],
+      "key_length": "4",
+      "rows_examined_per_scan": 66,
+      "rows_produced_per_join": 3,
+      "filtered": "5.56",
+      "index_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))",
+      "cost_info": {
+        "read_cost": "92.68",
+        "eval_cost": "0.73",
+        "prefix_cost": "93.41",
+        "data_read_per_join": "117"
+      },
+      "used_columns": [
+        "orderNumber",
+        "productCode",
+        "quantityOrdered",
+        "priceEach",
+        "orderLineNumber"
+      ]
+    }
+  }
+} |
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY DOS INDEX DOS
+
+
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "27.62"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxdos"
+      ],
+      "key": "idxdos",
+      "used_key_parts": [
+        "quantityOrdered"
+      ],
+      "key_length": "4",
+      "rows_examined_per_scan": 66,
+      "rows_produced_per_join": 3,
+      "filtered": "5.56",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "26.89",
+        "eval_cost": "0.73",
+        "prefix_cost": "27.62",
+        "data_read_per_join": "117"
+      },
+      "used_columns": [
+        "productCode",
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))"
+    }
+  }
+} |
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY TRES INDEX DOS
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "27.62"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxdos"
+      ],
+      "key": "idxdos",
+      "used_key_parts": [
+        "quantityOrdered"
+      ],
+      "key_length": "4",
+      "rows_examined_per_scan": 66,
+      "rows_produced_per_join": 3,
+      "filtered": "5.56",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "26.89",
+        "eval_cost": "0.73",
+        "prefix_cost": "27.62",
+        "data_read_per_join": "117"
+      },
+      "used_columns": [
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))"
+    }
+  }
+} |
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY UNO INDEX TRES
+
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "8.01"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxtres"
+      ],
+      "key": "idxtres",
+      "used_key_parts": [
+        "orderLineNumber",
+        "quantityOrdered"
+      ],
+      "key_length": "6",
+      "rows_examined_per_scan": 5,
+      "rows_produced_per_join": 5,
+      "filtered": "100.00",
+      "index_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))",
+      "cost_info": {
+        "read_cost": "7.01",
+        "eval_cost": "1.00",
+        "prefix_cost": "8.01",
+        "data_read_per_join": "160"
+      },
+      "used_columns": [
+        "orderNumber",
+        "productCode",
+        "quantityOrdered",
+        "priceEach",
+        "orderLineNumber"
+      ]
+    }
+  }
+} |
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY DOS INDEX TRES
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "3.02"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxtres"
+      ],
+      "key": "idxtres",
+      "used_key_parts": [
+        "orderLineNumber",
+        "quantityOrdered"
+      ],
+      "key_length": "6",
+      "rows_examined_per_scan": 5,
+      "rows_produced_per_join": 5,
+      "filtered": "100.00",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "2.02",
+        "eval_cost": "1.00",
+        "prefix_cost": "3.02",
+        "data_read_per_join": "160"
+      },
+      "used_columns": [
+        "productCode",
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))"
+    }
+  }
+} |
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY TRES INDEX TRES
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "3.02"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxtres"
+      ],
+      "key": "idxtres",
+      "used_key_parts": [
+        "orderLineNumber",
+        "quantityOrdered"
+      ],
+      "key_length": "6",
+      "rows_examined_per_scan": 5,
+      "rows_produced_per_join": 5,
+      "filtered": "100.00",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "2.02",
+        "eval_cost": "1.00",
+        "prefix_cost": "3.02",
+        "data_read_per_join": "160"
+      },
+      "used_columns": [
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))"
+    }
+  }
+} |
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+QUERY TRES INDEX CUATRO (INDEX CON HASH)
+
+
+| {
+  "query_block": {
+    "select_id": 1,
+    "cost_info": {
+      "query_cost": "3.02"
+    },
+    "table": {
+      "table_name": "orderdetails",
+      "access_type": "range",
+      "possible_keys": [
+        "idxcuatro"
+      ],
+      "key": "idxcuatro",
+      "used_key_parts": [
+        "orderLineNumber",
+        "quantityOrdered"
+      ],
+      "key_length": "6",
+      "rows_examined_per_scan": 5,
+      "rows_produced_per_join": 5,
+      "filtered": "100.00",
+      "using_index": true,
+      "cost_info": {
+        "read_cost": "2.02",
+        "eval_cost": "1.00",
+        "prefix_cost": "3.02",
+        "data_read_per_join": "160"
+      },
+      "used_columns": [
+        "quantityOrdered",
+        "orderLineNumber"
+      ],
+      "attached_condition": "((`classicmodels`.`orderdetails`.`orderLineNumber` = 1) and (`classicmodels`.`orderdetails`.`quantityOrdered` > 50))"
+    }
+  }
+} |
