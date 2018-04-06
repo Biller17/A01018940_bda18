@@ -83,45 +83,122 @@ db.grades.mapReduce(
         minScore: scores.minScore
       }
     },
-    function(value){
-      return value;
-    },
     {out:"min"}
 )
 
+db.min.aggregate( [
+  { $group:
+         {
+           _id: {value:"$value.score",class: "$value.class"},
+         }
+  },
+  {
+      "$match": {
+          "_id.class": { "$exists": true, "$ne": null }
+      }
+  },
+  {$sort:{"_id.value":1}},
+  {$limit:1}
 
-
+])
 
 
 // 5. ¿para cada materia el maximo de tareas entregadas?
 
+// db.grades.mapReduce(
+//     function() {
+//       homework = 0
+//       this.scores.forEach((value)=>{
+//         if(value.type ==  "homework"){
+//           homework += 1
+//         }
+//       });
+//       emit(this.class_id, homework);
+//     },
+//     function(class_id, hm) {
+//       return{
+//         class: class_id,
+//         homework: hm
+//       }
+//     },
+//     {out:"hm"}
+// )
+
 db.grades.mapReduce(
-    function() {
-      homework = 0
-      this.scores.forEach((value)=>{
-        if(value.type ==  "homework"){
-          homework += 1
-        }
-      });
-      emit(this.class_id, homework);
-    },
-    function(class_id, hm) {
-      return{
-        class: class_id,
-        homework: hm
+  function(){
+    homework = 0
+    this.scores.forEach((value)=>{
+      if(value.type ==  "homework"){
+        homework += 1
       }
-    },
-    {out:"hm"}
+    });
+    emit(this.class_id, homework);
+  },
+  function(key, values){
+    return Array.sum(values);
+  },
+  {
+    out:"hm"
+  }
 )
-
-
 
 
 // 6. ¿Qué alumno se inscribió en más cursos?
 
 
-
-
-
+db.grades.aggregate([
+   {$group: {
+       _id: {student: "$student_id"},
+       count: {$sum: 1}
+       }
+   },
+   {$match: {
+       count: {"$gt": 1}
+       }
+   },
+   {$sort: {
+       count: -1
+       }
+   },
+   {$limit:1}
+]).pretty();
 
 // ¿Cuál fue el curso que tuvo más reprobados?
+//
+//
+// db.grades.aggregate( [
+//   { $unwind : "$scores" } ,
+//   { $group:
+//          {
+//            _id: {class: "$class_id"},
+//            avg: { $avg: "$scores.score" }
+//          }
+//   },
+//   {$sort:{"avg":1}},
+//   {$limit:1}
+// ])
+
+
+db.grades.aggregate( [
+  { $unwind : "$scores" } ,
+  { $group:
+         {
+           _id: {student:"$student_id",class: "$class_id"},
+           avg: { $avg: "$scores.score" }
+         }
+  },
+  {
+    $match:{
+      avg:{$lt: 70}
+    }
+  },
+  {
+    $group:{
+      _id:{class:"$_id.class"},
+      count:{$sum:1}
+    }
+  },
+  {$sort:{"count":-1}},
+  {$limit:1}
+
+])
